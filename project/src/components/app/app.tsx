@@ -1,4 +1,4 @@
-import Main from '../../pages/Main';
+import Main from '../../pages/Main/Main';
 
 type AppScreenProps = {
   title: string,
