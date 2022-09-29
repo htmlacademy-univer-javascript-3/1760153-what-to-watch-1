@@ -1,15 +1,17 @@
-import FilmCard from '../../components/film-card/film-card';
+import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
+import {Films} from '../../types/film';
 
 type MainProps = {
   title: string,
   genre: string,
-  date: number
+  date: number,
+  films: Films[]
 };
 
-function Main({title, genre, date}: MainProps): JSX.Element {
+function Main({title, genre, date, films}: MainProps): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -49,7 +51,7 @@ function Main({title, genre, date}: MainProps): JSX.Element {
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">9</span>
+                  <span className="film-card__count">{films.filter((film)=> film.isFavorite).length}</span>
                 </button>
               </div>
             </div>
@@ -94,9 +96,7 @@ function Main({title, genre, date}: MainProps): JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {Array.from({length:20}, (i: number) => <FilmCard key={i} />)}
-          </div>
+          <FilmList films={films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
