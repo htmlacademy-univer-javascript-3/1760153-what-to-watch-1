@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { useState } from 'react';
 import { Films } from '../../types/film';
 import FilmCard from '../film-card/film-card';
 
@@ -8,7 +8,7 @@ type FilmListProps = {
 
 function FilmList(props: FilmListProps): JSX.Element {
   const { films } = props;
-  const [activeFilm, setActiveFilm] = useState(1);
+  const [activeFilm, setActiveFilm] = useState(NaN);
   return (
     <div className="catalog__films-list">
       {films.map((film) => {
@@ -17,9 +17,9 @@ function FilmList(props: FilmListProps): JSX.Element {
           <FilmCard
             film={film}
             key={keyValue}
-            mouseOverHandler={(e: MouseEvent<HTMLDivElement>) => {
-              e.preventDefault();
-              setActiveFilm(film.id);
+            isActive={activeFilm === film.id}
+            changeState={(activeId: number) => {
+              setActiveFilm(activeId);
             }}
           />);
       })}
