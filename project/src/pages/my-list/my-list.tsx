@@ -2,7 +2,7 @@ import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { Films } from '../../types/film';
 import UserBlock from '../../components/user-block/user-block';
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import FilmCard from '../../components/film-card/film-card';
 
 type MyListProps = {
@@ -11,7 +11,7 @@ type MyListProps = {
 
 function MyList(props: MyListProps): JSX.Element {
   const { films } = props;
-  const [activeFilm, setActiveFilm] = useState(1);
+  const [activeFilm, setActiveFilm] = useState(NaN);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -30,9 +30,9 @@ function MyList(props: MyListProps): JSX.Element {
               <FilmCard
                 film={film}
                 key={keyValue}
-                mouseOverHandler={(e: MouseEvent<HTMLDivElement>) => {
-                  e.preventDefault();
-                  setActiveFilm(film.id);
+                isActive={activeFilm === film.id}
+                changeState={(activeId: number) => {
+                  setActiveFilm(activeId);
                 }}
               />);
           })}
