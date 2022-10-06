@@ -8,15 +8,18 @@ export type FilmReview = {
 
 export type Films = {
   id: number,
-  title: string,
+  name: string,
   year: number,
   genre: string,
   poster: string,
+  backgroundImage: string,
+  videoLink: string,
+  previewVideoLink: string,
   averageRating: number,
   ratingLevel: string,
   description: string,
   director: string,
-  starring: string,
+  starring: string[],
   isFavorite: boolean,
   reviews: FilmReview[]
 }

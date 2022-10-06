@@ -9,7 +9,7 @@ type FilmCardProps = {
 
 function FilmCard(props: FilmCardProps): JSX.Element {
   const {film, mouseOverHandler} = props;
-  const {id, title, poster} = film;
+  const {id, name: title, poster} = film;
 
   return (
     <article className="small-film-card catalog__films-card" onMouseOver={mouseOverHandler}>

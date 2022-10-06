@@ -27,7 +27,7 @@ function AddReview(props: AddReviewProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link className="breadcrumbs__link" to={`/films/${id}`}>{film?.title}</Link>
+                <Link className="breadcrumbs__link" to={`/films/${id}`}>{film?.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a href="#todo" className="breadcrumbs__link">Add review</a>
