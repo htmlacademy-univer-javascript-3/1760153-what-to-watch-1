@@ -3,6 +3,7 @@ import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import {Films} from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
+import FilmDescription from '../../components/film-description/film-description';
 import { useParams, Link } from 'react-router-dom';
 
 type FilmProps = {
@@ -62,37 +63,7 @@ function Film(props: FilmProps): JSX.Element {
               <img src={film?.poster} alt={film?.name} width="218" height="327" />
             </div>
 
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#todo" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#todo" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#todo" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{film?.averageRating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">{film?.ratingLevel}</span>
-                  <span className="film-rating__count">{film?.reviews.length} ratings</span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{film?.description}</p>
-
-                <p className="film-card__director"><strong>Director: {film?.director}</strong></p>
-
-                <p className="film-card__starring"><strong>Starring: {film?.starring}</strong></p>
-              </div>
-            </div>
+            <FilmDescription film={film} />
           </div>
         </div>
       </section>
@@ -100,10 +71,8 @@ function Film(props: FilmProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
           <FilmList films={films.slice(0, 4)} />
         </section>
-
         <Footer />
       </div>
     </>

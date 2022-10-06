@@ -19,3 +19,9 @@ export enum RatingLevels {
     Normal = 'Normal',
     Bad = 'Bad'
 }
+
+export enum FilmTabs {
+    Overview = 'Overview',
+    Details = 'Details',
+    Reviews = 'Reviews'
+  }
