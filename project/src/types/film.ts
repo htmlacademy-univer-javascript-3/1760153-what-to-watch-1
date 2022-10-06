@@ -20,6 +20,7 @@ export type Films = {
   description: string,
   director: string,
   starring: string[],
+  runTime: string,
   isFavorite: boolean,
   reviews: FilmReview[]
 }

@@ -16,6 +16,7 @@ export const films: Films[] = [
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege. Gustave prides himself on providing first-className service to the hotels guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustaves lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
+    runTime: '1h 39m',
     isFavorite: true,
     reviews: [{
       id: 1,
@@ -45,6 +46,7 @@ export const films: Films[] = [
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege. Gustave prides himself on providing first-className service to the hotels guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustaves lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
+    runTime: '1h 39m',
     isFavorite: true,
     reviews: []
   }, {
@@ -61,6 +63,7 @@ export const films: Films[] = [
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege. Gustave prides himself on providing first-className service to the hotels guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustaves lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
+    runTime: '1h 39m',
     isFavorite: true,
     reviews: []
   }, {
@@ -77,6 +80,7 @@ export const films: Films[] = [
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege. Gustave prides himself on providing first-className service to the hotels guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustaves lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
+    runTime: '1h 39m',
     isFavorite: false,
     reviews: []
   }, {
@@ -93,6 +97,7 @@ export const films: Films[] = [
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege. Gustave prides himself on providing first-className service to the hotels guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustaves lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
+    runTime: '1h 39m',
     isFavorite: true,
     reviews: []
   }, {
@@ -109,6 +114,7 @@ export const films: Films[] = [
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege. Gustave prides himself on providing first-className service to the hotels guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustaves lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
+    runTime: '1h 39m',
     isFavorite: false,
     reviews: []
   }, {
@@ -125,6 +131,7 @@ export const films: Films[] = [
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege. Gustave prides himself on providing first-className service to the hotels guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustaves lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
+    runTime: '1h 39m',
     isFavorite: false,
     reviews: []
   }, {
@@ -141,6 +148,7 @@ export const films: Films[] = [
     description: 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustaves friend and protege. Gustave prides himself on providing first-className service to the hotels guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustaves lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.',
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
+    runTime: '1h 39m',
     isFavorite: false,
     reviews: []
   }
