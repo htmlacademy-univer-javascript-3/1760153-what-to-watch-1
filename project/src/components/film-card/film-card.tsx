@@ -4,18 +4,18 @@ import PlayerPreview from '../player-preview/player-preview';
 
 type FilmCardProps = {
   film: Films,
-  changeState: (id: number) => void;
+  OnChangeActiveFilm: (id: number) => void;
   isActive: boolean
 };
 
 function FilmCard(props: FilmCardProps): JSX.Element {
-  const { film, changeState, isActive } = props;
+  const { film, OnChangeActiveFilm, isActive } = props;
   const { id, name, poster, previewVideoLink } = film;
 
   return (
     <article className="small-film-card catalog__films-card"
-      onMouseEnter={() => changeState(id)}
-      onMouseLeave={() => changeState(NaN)}
+      onMouseEnter={() => OnChangeActiveFilm(id)}
+      onMouseLeave={() => OnChangeActiveFilm(NaN)}
     >
       <div className="small-film-card__image">
         {

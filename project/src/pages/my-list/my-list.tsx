@@ -31,7 +31,7 @@ function MyList(props: MyListProps): JSX.Element {
                 film={film}
                 key={keyValue}
                 isActive={activeFilm === film.id}
-                changeState={(activeId: number) => {
+                OnChangeActiveFilm={(activeId: number) => {
                   setActiveFilm(activeId);
                 }}
               />);
