@@ -1,6 +1,8 @@
 import { Films } from '../../types/film';
 import { Link } from 'react-router-dom';
 import PlayerPreview from '../player-preview/player-preview';
+import {useAppDispatch} from '../../hooks';
+import {resetMainPage} from '../../store/action';
 
 type FilmCardProps = {
   film: Films,
@@ -11,6 +13,7 @@ type FilmCardProps = {
 function FilmCard(props: FilmCardProps): JSX.Element {
   const { film, OnChangeActiveFilm, isActive } = props;
   const { id, name, poster, previewVideoLink } = film;
+  const dispatch = useAppDispatch();
 
   return (
     <article className="small-film-card catalog__films-card"
@@ -24,7 +27,7 @@ function FilmCard(props: FilmCardProps): JSX.Element {
         }
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`/films/${id}`}>{name}</Link>
+        <Link className="small-film-card__link" to={`/films/${id}`} onClick={() => (dispatch(resetMainPage()))}>{name}</Link>
       </h3>
     </article>
   );

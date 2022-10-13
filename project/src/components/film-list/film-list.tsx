@@ -1,32 +1,31 @@
 import { useState } from 'react';
-import { Films } from '../../types/film';
 import FilmCard from '../film-card/film-card';
-import {useAppSelector} from '../../hooks';
-import {getFilmsByGenre} from '../../utils/genresFilter';
+import { useAppSelector } from '../../hooks';
+import ShowMoreBtn from '../show-more-btn/show-more-btn';
 
-type FilmListProps = {
-  films: Films[]
-};
 
-function FilmList(props: FilmListProps): JSX.Element {
-  const { films } = props;
+function FilmList(): JSX.Element {
   const [activeFilm, setActiveFilm] = useState(NaN);
-  const currentGenre = useAppSelector((state) => state.currentGenre);
+  const films = useAppSelector((state) => state.filteredFilms);
+  const cardCount = useAppSelector((state) => state.cardCount);
   return (
-    <div className="catalog__films-list">
-      {getFilmsByGenre(films, currentGenre).map((film) => {
-        const keyValue = `${activeFilm}-${film.poster}`;
-        return (
-          <FilmCard
-            film={film}
-            key={keyValue}
-            isActive={activeFilm === film.id}
-            OnChangeActiveFilm={(activeId: number) => {
-              setActiveFilm(activeId);
-            }}
-          />);
-      })}
-    </div>
+    <>
+      <div className="catalog__films-list">
+        {films.slice(0, cardCount).map((film) => {
+          const keyValue = `${activeFilm}-${film.poster}`;
+          return (
+            <FilmCard
+              film={film}
+              key={keyValue}
+              isActive={activeFilm === film.id}
+              OnChangeActiveFilm={(activeId: number) => {
+                setActiveFilm(activeId);
+              }}
+            />);
+        })}
+      </div>
+      <ShowMoreBtn isAllCardsLoaded={cardCount !== films.length} />
+    </>
   );
 }
 
