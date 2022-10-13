@@ -151,5 +151,26 @@ export const films: Films[] = [
     runTime: '1h 39m',
     isFavorite: false,
     reviews: []
+  }, {
+    id: 9,
+    name: 'Shutter Island',
+    year: 2010,
+    genre: 'Thriller',
+    poster: 'https://10.react.pages.academy/static/film/poster/Shutter_Island.jpg',
+    backgroundImage: 'https://10.react.pages.academy/static/film/background/Shutter_Island.jpg',
+    videoLink: 'https://10.react.pages.academy/static/film/video/bubbles.mp4',
+    previewVideoLink: 'https://10.react.pages.academy/static/film/video/dog.mp4',
+    averageRating: 4.1,
+    ratingLevel: RatingLevels.Normal,
+    description: 'In 1954, a U.S. Marshal investigates the disappearance of a murderer, who escaped from a hospital for the criminally insane.',
+    director: 'Martin Scorsese',
+    starring: [
+      'Leonardo DiCaprio',
+      'Emily Mortimer',
+      'Mark Ruffalo'
+    ],
+    runTime: '2h 18m',
+    isFavorite: false,
+    reviews: []
   }
 ];

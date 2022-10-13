@@ -2,16 +2,17 @@ import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import {Films} from '../../types/film';
-import FilmList from '../../components/film-list/film-list';
 import FilmDescription from '../../components/film-description/film-description';
 import { useParams, Link } from 'react-router-dom';
+import SimilarList from '../../components/similar-list/similar-list';
 
 type FilmProps = {
-  films: Films[]
+  films: Films[],
+  similar: Films[]
 };
 
 function Film(props: FilmProps): JSX.Element {
-  const {films} = props;
+  const {films, similar} = props;
   const id = Number(useParams().id);
   const film = films.find((x) => x.id === id);
   return (
@@ -71,7 +72,7 @@ function Film(props: FilmProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films.slice(0, 4)} />
+          <SimilarList similar={similar} />
         </section>
         <Footer />
       </div>

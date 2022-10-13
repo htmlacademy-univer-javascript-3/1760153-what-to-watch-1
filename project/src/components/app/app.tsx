@@ -21,7 +21,7 @@ function App({ films }: AppScreenProps): JSX.Element {
       <Routes>
         <Route path={AppRoute.Main} element={<Main films={films} />} />
         <Route path={AppRoute.SignIn} element={<SignIn />} />
-        <Route path={AppRoute.Film} element={<Film films={films}/>} />
+        <Route path={AppRoute.Film} element={<Film films={films} similar={films.slice(0,4)}/>} />
         <Route path={AppRoute.MyList} element={
           <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
             <MyList films={films.filter((film) => film.isFavorite)} />
