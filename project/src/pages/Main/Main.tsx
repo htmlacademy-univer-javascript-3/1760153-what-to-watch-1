@@ -7,15 +7,15 @@ import {Films} from '../../types/film';
 import { Link } from 'react-router-dom';
 
 type MainProps = {
-  films: Films[]
+  promo: Films,
 };
 
-function Main({films}: MainProps): JSX.Element {
+function Main(props: MainProps): JSX.Element {
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={films[0].backgroundImage} alt="The Grand Budapest Hotel" />
+          <img src={props.promo.backgroundImage} alt="The Grand Budapest Hotel" />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -32,14 +32,14 @@ function Main({films}: MainProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{films[0].name}</h2>
+              <h2 className="film-card__title">{props.promo.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{films[0].genre}</span>
-                <span className="film-card__year">{films[0].year}</span>
+                <span className="film-card__genre">{props.promo.genre}</span>
+                <span className="film-card__year">{props.promo.year}</span>
               </p>
 
               <div className="film-card__buttons">
-                <Link to={`/player/${films[0].id}`} className="btn btn--play film-card__button" type="button">
+                <Link to={`/player/${props.promo.id}`} className="btn btn--play film-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -50,7 +50,7 @@ function Main({films}: MainProps): JSX.Element {
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">{films.filter((film)=> film.isFavorite).length}</span>
+                  <span className="film-card__count">9</span>
                 </button>
               </div>
             </div>

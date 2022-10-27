@@ -1,11 +1,9 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import {useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
 import {useRef} from 'react';
 import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
-import {AppRoute} from '../../const';
 
 function SignIn(): JSX.Element {
   const emailRef = useRef<HTMLInputElement | null>(null);
@@ -13,7 +11,6 @@ function SignIn(): JSX.Element {
 
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -62,9 +59,7 @@ function SignIn(): JSX.Element {
                     password: passwordRef.current.value,
                   });
                 }
-
-                navigate(AppRoute.Main);
-
+                //navigate(AppRoute.Main);
               }}
             >
               Sign in

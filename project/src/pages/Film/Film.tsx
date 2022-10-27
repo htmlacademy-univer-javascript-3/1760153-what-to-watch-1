@@ -1,20 +1,28 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import {Films} from '../../types/film';
 import FilmDescription from '../../components/film-description/film-description';
 import { useParams, Link } from 'react-router-dom';
 import SimilarList from '../../components/similar-list/similar-list';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import { AuthorizationStatus} from '../../const';
+import {useEffect} from 'react';
+import {setDataLoadedStatus} from '../../store/action';
+import {fetchCommentsByID, fetchFilmByID, fetchSimilarByID} from '../../store/api-actions';
 
-type FilmProps = {
-  films: Films[],
-  similar: Films[]
-};
-
-function Film(props: FilmProps): JSX.Element {
-  const {films, similar} = props;
+function Film(): JSX.Element {
   const id = Number(useParams().id);
-  const film = films.find((x) => x.id === id);
+  const film = useAppSelector((state) => state.film);
+  const similar = useAppSelector((state) => state.similar);
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(setDataLoadedStatus(true));
+    dispatch(fetchFilmByID(id.toString()));
+    dispatch(fetchCommentsByID(id.toString()));
+    dispatch(fetchSimilarByID(id.toString()));
+    dispatch(setDataLoadedStatus(false));
+  }, [id, dispatch]);
   return (
     <>
       <section className="film-card film-card--full">
@@ -52,7 +60,8 @@ function Film(props: FilmProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link className="btn film-card__button" to={`/films/${id}/review`}>Add review</Link>
+                { authStatus === AuthorizationStatus.Auth &&
+                  <Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>}
               </div>
             </div>
           </div>

@@ -18,20 +18,7 @@ export const films: Films[] = [
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
     runTime: '1h 39m',
     isFavorite: true,
-    reviews: [{
-      id: 1,
-      rating: 7.6,
-      author: 'Paula Fleri-Soler',
-      date: 'December 20, 2016',
-      text: 'It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.'
-    }, {
-      id: 2,
-      rating: 7.2,
-      author: 'Matthew Lickona',
-      date: 'December 20, 2016',
-      text: 'The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.'
-    }
-    ]
+    reviews: []
   }, {
     id: 2,
     name: 'Fantastic Beasts: The Crimes of Grindelwald',

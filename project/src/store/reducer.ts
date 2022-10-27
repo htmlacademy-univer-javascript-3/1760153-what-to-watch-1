@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { ALL_GENRES, AuthorizationStatus, CARDS_COUNT } from '../const';
-import {Films} from '../types/film';
+import {Films, Comments} from '../types/film';
+import Similar from '../types/similar';
 import {
   changeGenre,
   increaseCardCount,
@@ -9,7 +10,10 @@ import {
   resetCardCount,
   resetMainPage,
   setError,
-  setDataLoadedStatus
+  setDataLoadedStatus,
+  loadComments,
+  loadFilm,
+  loadSimilar
 } from './action';
 import { getFilmsByGenre } from '../utils/genresFilter';
 
@@ -20,7 +24,12 @@ type InitialState = {
   cardCount: number,
   authorizationStatus: string,
   isDataLoaded: boolean,
-  error: string | null
+  error: string | null,
+  avatar: string | null,
+
+  comments: Comments,
+  similar: Similar,
+  film: Films | null
 }
 
 const initialState: InitialState = {
@@ -30,7 +39,11 @@ const initialState: InitialState = {
   cardCount: 0,
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoaded: false,
-  error: null
+  error: null,
+  avatar: null,
+  comments: [],
+  similar: [],
+  film: null
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -47,7 +60,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.filteredFilms = filteredFilms;
       state.cardCount = filteredFilms.length < CARDS_COUNT ?
         filteredFilms.length :
-        8;
+        CARDS_COUNT;
     })
 
     .addCase(increaseCardCount, (state) => {
@@ -74,5 +87,14 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+    .addCase(loadFilm, (state, action) => {
+      state.film = action.payload;
+    })
+    .addCase(loadComments, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(loadSimilar, (state, action) => {
+      state.similar = action.payload;
     });
 });
