@@ -1,10 +1,12 @@
-export type FilmReview = {
-  id: number,
-  rating: number,
-  author: string,
-  date: string,
-  text: string
-}
+export type Comments = {
+  comment: string
+  date: string
+  id: number
+  rating: number
+  user: {
+    id: number
+    name: string
+  }}[];
 
 export type Films = {
   id: number,
@@ -22,5 +24,5 @@ export type Films = {
   starring: string[],
   runTime: string,
   isFavorite: boolean,
-  reviews: FilmReview[]
+  reviews: Comments
 }

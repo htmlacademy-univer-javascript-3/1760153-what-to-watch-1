@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { FilmTabs } from '../../const';
 
 type FilmDescProps = {
-  film: Films | undefined;
+  film: Films | null;
 }
 
 function FilmDescription(props: FilmDescProps): JSX.Element {

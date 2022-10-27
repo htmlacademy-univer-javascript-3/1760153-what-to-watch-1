@@ -1,7 +1,7 @@
 import {Films} from '../../types/film';
 
 type OverviewProps = {
-  film: Films | undefined;
+  film: Films | null;
 }
 
 function Overview(props: OverviewProps): JSX.Element {
@@ -10,10 +10,10 @@ function Overview(props: OverviewProps): JSX.Element {
   return (
     <>
       <div className="film-rating">
-        <div className="film-rating__score">{film?.averageRating}</div>
+        <div className="film-rating__score">{film?.averageRating ?? 0.0}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">{film?.ratingLevel}</span>
-          <span className="film-rating__count">{film?.reviews.length} ratings</span>
+          <span className="film-rating__level">{film?.ratingLevel ?? 'Normal'}</span>
+          <span className="film-rating__count">{film?.reviews?.length ?? 0} ratings</span>
         </p>
       </div>
 
