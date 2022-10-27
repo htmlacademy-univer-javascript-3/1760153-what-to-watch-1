@@ -1,6 +1,6 @@
 import Main from '../../pages/main/Main';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import SignIn from '../../pages/sign-in/sign-in';
 import Film from '../../pages/film/Film';
@@ -13,6 +13,8 @@ import { Films } from '../../types/film';
 import {useAppSelector} from '../../hooks';
 import {isCheckedAuth} from '../../utils/check-auth';
 import LoadingPage from '../../pages/loading-page/loading-page';
+import {browserHistory} from '../../browser-history';
+import HistoryRouter from '../history-route/history-route';
 
 type AppScreenProps = {
   films: Films[]
@@ -27,7 +29,7 @@ function App({ films }: AppScreenProps): JSX.Element {
     );
   }
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path={AppRoute.Main} element={<Main films={films} />} />
         <Route path={AppRoute.SignIn} element={<SignIn />} />
@@ -47,7 +49,7 @@ function App({ films }: AppScreenProps): JSX.Element {
         <Route path={AppRoute.Player} element={<Player films={films} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
