@@ -1,7 +1,35 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
+import {useNavigate} from 'react-router-dom';
+import {useAppDispatch} from '../../hooks';
+import {useRef} from 'react';
+import {loginAction} from '../../store/api-actions';
+import {AuthData} from '../../types/auth-data';
+import {AppRoute} from '../../const';
 
 function SignIn(): JSX.Element {
+  const emailRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit = (authData: AuthData) => {
+    dispatch(loginAction(authData));
+  };
+
+  // const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  //   evt.preventDefault();
+
+  //   if (emailRef.current !== null && passwordRef.current !== null) {
+  //     onSubmit({
+  //       email: emailRef.current.value,
+  //       password: passwordRef.current.value,
+  //     });
+  //   }
+  // };
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -13,16 +41,34 @@ function SignIn(): JSX.Element {
         <form action="#" className="sign-in__form">
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" ref={emailRef} />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
+              <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" ref={passwordRef} />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit">Sign in</button>
+            <button
+              className="sign-in__btn"
+              type="submit"
+              onClick={(evt) => {
+                evt.preventDefault();
+
+                if (emailRef.current !== null && passwordRef.current !== null) {
+                  onSubmit({
+                    email: emailRef.current.value,
+                    password: passwordRef.current.value,
+                  });
+                }
+
+                navigate(AppRoute.Main);
+
+              }}
+            >
+              Sign in
+            </button>
           </div>
         </form>
       </div>

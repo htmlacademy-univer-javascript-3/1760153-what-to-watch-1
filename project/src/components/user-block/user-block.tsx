@@ -1,4 +1,9 @@
+import { Link } from 'react-router-dom';
+import { logoutAction } from '../../store/api-actions';
+import { useAppDispatch } from '../../hooks';
+
 function UserBlock(): JSX.Element {
+  const dispatch = useAppDispatch();
   return (
     <ul className="user-block">
       <li className="user-block__item">
@@ -7,7 +12,16 @@ function UserBlock(): JSX.Element {
         </div>
       </li>
       <li className="user-block__item">
-        <a href="#todo" className="user-block__link">Sign out</a>
+        <Link
+          className="user-block__link"
+          to="/"
+          onClick={(evt) => {
+            evt.preventDefault();
+            dispatch(logoutAction());
+          }}
+        >
+          Sign out
+        </Link>
       </li>
     </ul>
   );
