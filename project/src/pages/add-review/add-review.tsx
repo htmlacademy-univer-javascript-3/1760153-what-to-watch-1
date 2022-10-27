@@ -39,7 +39,7 @@ function AddReview(props: AddReviewProps): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={film?.poster} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={film?.posterImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
         </div>
       </div>
 

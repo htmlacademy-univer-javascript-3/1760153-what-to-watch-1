@@ -11,7 +11,7 @@ function Player(props: PlayerProps): JSX.Element {
   const film = films.find((x) => x.id === id);
   return (
     <div className="player">
-      <video src="#" className="player__video" poster={film?.poster}></video>
+      <video src="#" className="player__video" poster={film?.posterImage}></video>
       <Link to={`/films/${film?.id}`} className="player__exit">Exit</Link>
       <div className="player__controls">
         <div className="player__controls-row">

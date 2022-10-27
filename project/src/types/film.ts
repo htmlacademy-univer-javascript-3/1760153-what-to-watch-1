@@ -11,7 +11,7 @@ export type Films = {
   name: string,
   year: number,
   genre: string,
-  poster: string,
+  posterImage: string,
   backgroundImage: string,
   videoLink: string,
   previewVideoLink: string,

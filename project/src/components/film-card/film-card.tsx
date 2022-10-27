@@ -12,7 +12,7 @@ type FilmCardProps = {
 
 function FilmCard(props: FilmCardProps): JSX.Element {
   const { film, OnChangeActiveFilm, isActive } = props;
-  const { id, name, poster, previewVideoLink } = film;
+  const { id, name, posterImage, previewVideoLink } = film;
   const dispatch = useAppDispatch();
 
   return (
@@ -22,8 +22,8 @@ function FilmCard(props: FilmCardProps): JSX.Element {
     >
       <div className="small-film-card__image">
         {
-          isActive ? <PlayerPreview previewImage={poster} previewVideo={previewVideoLink} />
-            : <img src={poster} alt={name} width="280" height="175" />
+          isActive ? <PlayerPreview previewImage={posterImage} previewVideo={previewVideoLink} />
+            : <img src={posterImage} alt={name} width="280" height="175" />
         }
       </div>
       <h3 className="small-film-card__title">

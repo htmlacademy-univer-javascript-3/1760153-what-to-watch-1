@@ -40,3 +40,13 @@ export enum GenresList {
 }
 
 export const ALL_GENRES = 'All genres';
+
+export enum APIRoute {
+  Films = '/films',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+export const TIMEOUT_SHOW_ERROR = 2000;
+
+export const CARDS_COUNT = 8;

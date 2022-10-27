@@ -61,7 +61,7 @@ function Film(props: FilmProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={film?.poster} alt={film?.name} width="218" height="327" />
+              <img src={film?.posterImage} alt={film?.name} width="218" height="327" />
             </div>
 
             <FilmDescription film={film} />
