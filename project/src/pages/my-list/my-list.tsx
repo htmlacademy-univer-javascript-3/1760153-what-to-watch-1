@@ -25,7 +25,7 @@ function MyList(props: MyListProps): JSX.Element {
 
         <div className="catalog__films-list">
           {films.map((film) => {
-            const keyValue = `${activeFilm}-${film.poster}`;
+            const keyValue = `${activeFilm}-${film.posterImage}`;
             return (
               <FilmCard
                 film={film}

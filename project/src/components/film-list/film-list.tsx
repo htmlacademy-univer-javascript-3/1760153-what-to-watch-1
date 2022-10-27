@@ -12,7 +12,7 @@ function FilmList(): JSX.Element {
     <>
       <div className="catalog__films-list">
         {films.slice(0, cardCount).map((film) => {
-          const keyValue = `${activeFilm}-${film.poster}`;
+          const keyValue = `${activeFilm}-${film.posterImage}`;
           return (
             <FilmCard
               film={film}
