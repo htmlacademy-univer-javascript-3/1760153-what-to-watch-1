@@ -1,20 +1,26 @@
 import { resetMainPage } from '../../store/action';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
+import {useState} from 'react';
+import PlayerPreview from '../player-preview/player-preview';
 
 type FilmCardProps = {
   id: number,
   title: string,
-  image: string
+  image: string,
+  video: string
 }
 
-function SimCardFilm({ id, title, image }: FilmCardProps): JSX.Element {
+function SimCardFilm({ id, title, image, video }: FilmCardProps): JSX.Element {
   const dispatch = useAppDispatch();
-
+  const [isActive, setIsActive] = useState(false);
   return (
-    <article className="small-film-card catalog__films-card">
+    <article className="small-film-card catalog__films-card" onMouseEnter={() => setIsActive(true)} onMouseLeave={() => setIsActive(false)}>
       <div className="small-film-card__image">
-        <img src={image} alt={title} width="280" height="175" />
+        {
+          isActive ? <PlayerPreview previewImage={image} previewVideo={video} />
+            : <img src={image} alt={title} width="280" height="175" />
+        }
       </div>
       <h3 className="small-film-card__title">
         <Link

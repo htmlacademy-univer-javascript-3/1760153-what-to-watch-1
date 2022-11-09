@@ -21,7 +21,8 @@ type AppScreenProps = {
 };
 
 function App({ films }: AppScreenProps): JSX.Element {
-  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
 
   if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
     return (
@@ -31,7 +32,7 @@ function App({ films }: AppScreenProps): JSX.Element {
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
-        <Route path={AppRoute.Main} element={<Main promo={films[0]} />} />
+        <Route path={AppRoute.Main} element={<Main />} />
         <Route path={AppRoute.SignIn} element={<SignIn />} />
         <Route path={AppRoute.Film} element={<Film/>} />
         <Route path={AppRoute.MyList} element={
@@ -46,7 +47,7 @@ function App({ films }: AppScreenProps): JSX.Element {
           </PrivateRoute>
         }
         />
-        <Route path={AppRoute.Player} element={<Player films={films} />} />
+        <Route path={AppRoute.Player} element={<Player />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HistoryRouter>

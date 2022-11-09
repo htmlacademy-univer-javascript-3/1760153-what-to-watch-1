@@ -7,22 +7,32 @@ import SimilarList from '../../components/similar-list/similar-list';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import { AuthorizationStatus} from '../../const';
 import {useEffect} from 'react';
-import {setDataLoadedStatus} from '../../store/action';
+import {setFilmLoadedStatus} from '../../store/action';
 import {fetchCommentsByID, fetchFilmByID, fetchSimilarByID} from '../../store/api-actions';
+import LoadingPage from '../loading-page/loading-page';
+import NotFound from '../not-found/not-found';
 
 function Film(): JSX.Element {
   const id = Number(useParams().id);
   const film = useAppSelector((state) => state.film);
   const similar = useAppSelector((state) => state.similar);
   const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const isFilmFoundStatus = useAppSelector((state) => state.isFilmFoundStatus);
+  const isFilmLoadedStatus = useAppSelector((state) => state.isFilmLoadedStatus);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(setDataLoadedStatus(true));
+    dispatch(setFilmLoadedStatus(false));
     dispatch(fetchFilmByID(id.toString()));
     dispatch(fetchCommentsByID(id.toString()));
     dispatch(fetchSimilarByID(id.toString()));
-    dispatch(setDataLoadedStatus(false));
   }, [id, dispatch]);
+  if (!isFilmLoadedStatus) {
+    return <LoadingPage />;
+  }
+
+  if (!isFilmFoundStatus) {
+    return <NotFound />;
+  }
   return (
     <>
       <section className="film-card film-card--full">

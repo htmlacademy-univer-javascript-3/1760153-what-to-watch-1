@@ -47,7 +47,8 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Similar = '/similar',
-  Comments = '/comments'
+  Comments = '/comments',
+  Promo = '/promo'
 }
 
 export const CARDS_COUNT = 8;

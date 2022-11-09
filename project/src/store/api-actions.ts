@@ -4,7 +4,7 @@ import {AxiosInstance} from 'axios';
 import {Films, Comments} from '../types/film';
 import Similar from '../types/similar';
 import {APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
-import {loadFilms, requireAuthorization, setError, setDataLoadedStatus, setAvatar, redirectToRoute, loadFilm, loadSimilar, loadComments} from './action';
+import {loadFilms, requireAuthorization, setError, setAvatar, redirectToRoute, loadFilm, loadSimilar, loadComments, loadPromo, setFilmFoundStatus, setFilmLoadedStatus} from './action';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {dropToken, saveToken} from '../services/token';
@@ -28,9 +28,7 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   'data/fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<Films[]>(APIRoute.Films);
-    dispatch(setDataLoadedStatus(true));
     dispatch(loadFilms(data));
-    dispatch(setDataLoadedStatus(false));
   },
 );
 
@@ -47,6 +45,18 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
+  },
+);
+
+export const fetchPromoAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchPromo',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<Films>(APIRoute.Promo);
+    dispatch(loadPromo(data));
   },
 );
 
@@ -87,8 +97,15 @@ export const fetchFilmByID = createAsyncThunk<void, string, {
 }>(
   'data/fetchFilmById',
   async (filmId: string, {dispatch, extra: api}) => {
-    const {data} = await api.get<Films>(`${APIRoute.Films}/${filmId}`);
-    dispatch(loadFilm(data));
+    try {
+      const {data} = await api.get<Films>(`${APIRoute.Films}/${filmId}`);
+      dispatch(loadFilm(data));
+      dispatch(setFilmLoadedStatus(true));
+      dispatch(setFilmFoundStatus(true));
+    } catch {
+      dispatch(setFilmLoadedStatus(true));
+      dispatch(setFilmFoundStatus(false));
+    }
   },
 );
 

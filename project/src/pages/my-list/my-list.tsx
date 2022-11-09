@@ -2,7 +2,6 @@ import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { Films } from '../../types/film';
 import UserBlock from '../../components/user-block/user-block';
-import { useState } from 'react';
 import FilmCard from '../../components/film-card/film-card';
 
 type MyListProps = {
@@ -11,7 +10,6 @@ type MyListProps = {
 
 function MyList(props: MyListProps): JSX.Element {
   const { films } = props;
-  const [activeFilm, setActiveFilm] = useState(NaN);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -25,15 +23,11 @@ function MyList(props: MyListProps): JSX.Element {
 
         <div className="catalog__films-list">
           {films.map((film) => {
-            const keyValue = `${activeFilm}-${film.posterImage}`;
+            const keyValue = `${film.posterImage}`;
             return (
               <FilmCard
                 film={film}
                 key={keyValue}
-                isActive={activeFilm === film.id}
-                OnChangeActiveFilm={(activeId: number) => {
-                  setActiveFilm(activeId);
-                }}
               />);
           })}
         </div>

@@ -1,23 +1,15 @@
-import {Films} from '../../types/film';
-import { useParams, Link } from 'react-router-dom';
-
-type PlayerProps = {
-  films: Films[]
-};
-
-function Player(props: PlayerProps): JSX.Element {
-  const {films} = props;
-  const id = Number(useParams().id);
-  const film = films.find((x) => x.id === id);
+function Player(): JSX.Element {
   return (
     <div className="player">
-      <video src="#" className="player__video" poster={film?.posterImage}></video>
-      <Link to={`/films/${film?.id}`} className="player__exit">Exit</Link>
+      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+
+      <button type="button" className="player__exit">Exit</button>
+
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value="30" max="100"></progress>
-            <div className="player__toggler" style={{ left: '30%;' }}>Toggler</div>
+            <div className="player__toggler" style={{left: '30%'}}>Toggler</div>
           </div>
           <div className="player__time-value">1:30:29</div>
         </div>

@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { ALL_GENRES, AuthorizationStatus, CARDS_COUNT } from '../const';
+import { ALL_GENRES, AuthorizationStatus, CARDS_COUNT, FilmTabs } from '../const';
 import {Films, Comments} from '../types/film';
 import Similar from '../types/similar';
 import {
@@ -13,7 +13,11 @@ import {
   setDataLoadedStatus,
   loadComments,
   loadFilm,
-  loadSimilar
+  loadSimilar,
+  loadPromo,
+  changeFilmTab,
+  setFilmFoundStatus,
+  setFilmLoadedStatus
 } from './action';
 import { getFilmsByGenre } from '../utils/genresFilter';
 
@@ -29,7 +33,11 @@ type InitialState = {
 
   comments: Comments,
   similar: Similar,
-  film: Films | null
+  film: Films | null,
+  promo: Films | null,
+  filmPageTab: string,
+  isFilmFoundStatus: boolean | null,
+  isFilmLoadedStatus: boolean | null
 }
 
 const initialState: InitialState = {
@@ -43,7 +51,11 @@ const initialState: InitialState = {
   avatar: null,
   comments: [],
   similar: [],
-  film: null
+  film: null,
+  promo: null,
+  filmPageTab: FilmTabs.Overview as string,
+  isFilmFoundStatus: null,
+  isFilmLoadedStatus: null
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -52,6 +64,9 @@ export const reducer = createReducer(initialState, (builder) => {
       state.currentGenre = ALL_GENRES;
       state.filteredFilms = state.films;
       state.cardCount = state.films.length < CARDS_COUNT ? state.films.length : CARDS_COUNT;
+    })
+    .addCase(changeFilmTab, (state, action) => {
+      state.filmPageTab = action.payload.currentTab;
     })
     .addCase(changeGenre, (state, action) => {
       const filteredFilms = getFilmsByGenre(state.films, action.payload.currentGenre);
@@ -79,6 +94,9 @@ export const reducer = createReducer(initialState, (builder) => {
       state.filteredFilms = action.payload;
       state.cardCount = CARDS_COUNT;
     })
+    .addCase(loadPromo, (state, action) => {
+      state.promo = action.payload;
+    })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
     })
@@ -96,5 +114,11 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadSimilar, (state, action) => {
       state.similar = action.payload;
+    })
+    .addCase(setFilmLoadedStatus, (state, action) => {
+      state.isFilmLoadedStatus = action.payload;
+    })
+    .addCase(setFilmFoundStatus, (state, action) => {
+      state.isFilmFoundStatus = action.payload;
     });
 });
