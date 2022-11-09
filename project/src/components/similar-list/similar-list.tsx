@@ -10,7 +10,7 @@ function SimilarList({ similar }: SimilarListProps): JSX.Element {
     <section className="catalog catalog--like-this">
       <h2 className="catalog__title">More like this</h2>
       <div className="catalog__films-list">
-        {similar.map((film) => <SimCardFilm key={film.id} id={film.id} title={film.name} image={film.previewImage}/>)}
+        {similar.map((film) => <SimCardFilm key={film.id} id={film.id} title={film.name} image={film.previewImage} video={film.previewVideoLink}/>)}
       </div>
     </section>
   );

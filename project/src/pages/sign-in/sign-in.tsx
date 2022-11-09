@@ -26,7 +26,7 @@ function SignIn(): JSX.Element {
   //     });
   //   }
   // };
-
+  const checkPassword = (password: string): boolean => (/(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/.test(password));
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -53,7 +53,9 @@ function SignIn(): JSX.Element {
               onClick={(evt) => {
                 evt.preventDefault();
 
-                if (emailRef.current !== null && passwordRef.current !== null) {
+                if (emailRef.current !== null
+                  && passwordRef.current !== null
+                  && checkPassword(passwordRef.current?.value)) {
                   onSubmit({
                     email: emailRef.current.value,
                     password: passwordRef.current.value,

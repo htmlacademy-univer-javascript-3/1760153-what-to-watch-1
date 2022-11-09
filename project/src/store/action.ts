@@ -16,3 +16,7 @@ export const loadComments = createAction<Comments>('data/loadCommentsById');
 export const loadSimilar = createAction<Similar>('data/loadSimilarById');
 export const setAvatar = createAction<string | null>('user/avatar');
 export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');
+export const loadPromo = createAction<Films>('data/loadPromo');
+export const changeFilmTab = createAction<{ currentTab: string }>('film/changeFilmTab');
+export const setFilmFoundStatus = createAction<boolean>('film/setFilmFoundStatus');
+export const setFilmLoadedStatus = createAction<boolean>('film/setFilmLoadedStatus');

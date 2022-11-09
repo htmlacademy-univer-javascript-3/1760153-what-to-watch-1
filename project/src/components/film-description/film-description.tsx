@@ -3,8 +3,8 @@ import Overview from '../overview/overview';
 import Details from '../details/details';
 import ReviewList from '../reviews/reviews';
 import { Films } from '../../types/film';
-import { useState } from 'react';
 import { FilmTabs } from '../../const';
+import {useAppSelector} from '../../hooks';
 
 type FilmDescProps = {
   film: Films | null;
@@ -12,16 +12,18 @@ type FilmDescProps = {
 
 function FilmDescription(props: FilmDescProps): JSX.Element {
   const { film } = props;
-  const [pageTab, setPageTab] = useState<string>(FilmTabs.Overview);
+  const pageTab = useAppSelector((state) => state.filmPageTab);
+  if (!film) {
+    return (
+      <div className="film-card__desc">
+        <Tabs currentTab={pageTab} />
+      </div>
+    );
+  }
 
   return (
     <div className="film-card__desc">
-      <Tabs
-        currentTab={pageTab}
-        updateTab={(tabName: string) => {
-          setPageTab(tabName);
-        }}
-      />
+      <Tabs currentTab={pageTab} />
 
       {pageTab === FilmTabs.Overview && <Overview film={film} />}
       {pageTab === FilmTabs.Details && <Details film={film} />}
