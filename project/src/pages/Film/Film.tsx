@@ -7,8 +7,15 @@ import SimilarList from '../../components/similar-list/similar-list';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import { AuthorizationStatus} from '../../const';
 import {useEffect} from 'react';
-import {setFilmLoadedStatus} from '../../store/action';
-import {fetchCommentsByID, fetchFilmByID, fetchSimilarByID} from '../../store/api-actions';
+import {setFilmLoadedStatus, setFavoriteCount} from '../../store/action';
+import { FilmStatus } from '../../types/film-status';
+import {
+  changeStatusToView,
+  fetchCommentsByID,
+  fetchFavoriteFilmsAction,
+  fetchFilmByID,
+  fetchSimilarByID
+} from '../../store/api-actions';
 import LoadingPage from '../loading-page/loading-page';
 import NotFound from '../not-found/not-found';
 
@@ -21,11 +28,35 @@ function Film(): JSX.Element {
   const isFilmLoadedStatus = useAppSelector((state) => state.isFilmLoadedStatus);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(setFilmLoadedStatus(false));
+    dispatch(setFilmLoadedStatus(true));
     dispatch(fetchFilmByID(id.toString()));
     dispatch(fetchCommentsByID(id.toString()));
     dispatch(fetchSimilarByID(id.toString()));
-  }, [id, dispatch]);
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoriteFilmsAction());
+    }
+    dispatch(setFilmLoadedStatus(false));
+
+  }, [id, authStatus, dispatch]);
+
+
+  const favoriteCount = useAppSelector((state) => state.favoriteCount);
+
+  const onAddFavoriteClick = () => {
+    const filmStatus: FilmStatus = {
+      filmId: film?.id || NaN,
+      status: film?.isFavorite ? 0 : 1
+    };
+
+    dispatch(changeStatusToView(filmStatus));
+
+    if (film?.isFavorite) {
+      dispatch(setFavoriteCount(favoriteCount - 1));
+    } else {
+      dispatch(setFavoriteCount(favoriteCount + 1));
+    }
+  };
+
   if (!isFilmLoadedStatus) {
     return <LoadingPage />;
   }
@@ -63,13 +94,23 @@ function Film(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                {
+                  authStatus === AuthorizationStatus.Auth &&
+                  <button
+                    className="btn btn--list film-card__button"
+                    type="button"
+                    onClick={onAddFavoriteClick}
+                  >
+                    {
+                      film?.isFavorite ? <span>✓</span> :
+                        <svg viewBox="0 0 19 20" width="19" height="20">
+                          <use xlinkHref="#add"></use>
+                        </svg>
+                    }
+                    <span>My list</span>
+                    <span className="film-card__count">{favoriteCount}</span>
+                  </button>
+                }
                 { authStatus === AuthorizationStatus.Auth &&
                   <Link to={`/films/${id}/review`} className="btn film-card__button">Add review</Link>}
               </div>
@@ -83,7 +124,7 @@ function Film(): JSX.Element {
               <img src={film?.posterImage} alt={film?.name} width="218" height="327" />
             </div>
 
-            <FilmDescription film={film} />
+            <FilmDescription />
           </div>
         </div>
       </section>

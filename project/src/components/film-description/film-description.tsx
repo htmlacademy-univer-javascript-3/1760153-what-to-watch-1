@@ -2,16 +2,12 @@ import Tabs from '../tabs/tabs';
 import Overview from '../overview/overview';
 import Details from '../details/details';
 import ReviewList from '../reviews/reviews';
-import { Films } from '../../types/film';
 import { FilmTabs } from '../../const';
 import {useAppSelector} from '../../hooks';
 
-type FilmDescProps = {
-  film: Films | null;
-}
 
-function FilmDescription(props: FilmDescProps): JSX.Element {
-  const { film } = props;
+function FilmDescription(): JSX.Element {
+  const film = useAppSelector((state) => state.film);
   const pageTab = useAppSelector((state) => state.filmPageTab);
   if (!film) {
     return (
