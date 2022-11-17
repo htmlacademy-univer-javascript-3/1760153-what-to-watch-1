@@ -17,9 +17,12 @@ import {
   loadPromo,
   changeFilmTab,
   setFilmFoundStatus,
-  setFilmLoadedStatus
+  setFilmLoadedStatus,
+  loadFavoriteFilms,
+  setFavoriteCount
 } from './action';
 import { getFilmsByGenre } from '../utils/genresFilter';
+import Favorite from '../types/favorite';
 
 type InitialState = {
   films: Films[];
@@ -37,7 +40,11 @@ type InitialState = {
   promo: Films | null,
   filmPageTab: string,
   isFilmFoundStatus: boolean | null,
-  isFilmLoadedStatus: boolean | null
+  isFilmLoadedStatus: boolean | null,
+
+  favoriteFilms: Favorite,
+  avatarUrl: string,
+  favoriteCount: number
 }
 
 const initialState: InitialState = {
@@ -55,7 +62,10 @@ const initialState: InitialState = {
   promo: null,
   filmPageTab: FilmTabs.Overview as string,
   isFilmFoundStatus: null,
-  isFilmLoadedStatus: null
+  isFilmLoadedStatus: null,
+  favoriteFilms: [],
+  avatarUrl: 'img/avatar.jpg',
+  favoriteCount: 0
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -94,6 +104,9 @@ export const reducer = createReducer(initialState, (builder) => {
       state.filteredFilms = action.payload;
       state.cardCount = CARDS_COUNT;
     })
+    .addCase(setFavoriteCount, (state, action) =>{
+      state.favoriteCount = action.payload;
+    })
     .addCase(loadPromo, (state, action) => {
       state.promo = action.payload;
     })
@@ -120,5 +133,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmFoundStatus, (state, action) => {
       state.isFilmFoundStatus = action.payload;
+    })
+    .addCase(loadFavoriteFilms, (state, action) => {
+      state.favoriteFilms = action.payload;
     });
 });

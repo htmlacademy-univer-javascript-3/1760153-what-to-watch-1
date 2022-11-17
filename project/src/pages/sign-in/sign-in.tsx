@@ -81,7 +81,6 @@ function SignIn(): JSX.Element {
                     password: passwordRef.current.value,
                   });
                 }
-                //navigate(AppRoute.Main);
               }}
             >
               Sign in

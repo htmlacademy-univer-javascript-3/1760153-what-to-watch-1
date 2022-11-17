@@ -4,11 +4,13 @@ import {AxiosInstance} from 'axios';
 import {Films, Comments} from '../types/film';
 import Similar from '../types/similar';
 import {APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
-import {loadFilms, requireAuthorization, setError, setAvatar, redirectToRoute, loadFilm, loadSimilar, loadComments, loadPromo, setFilmFoundStatus, setFilmLoadedStatus} from './action';
+import {loadFilms, loadFavoriteFilms, changeFilmStatus, changePromoStatus, requireAuthorization, setError, setAvatar, redirectToRoute, loadFilm, loadSimilar, loadComments, loadPromo, setFilmFoundStatus, setFilmLoadedStatus} from './action';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {dropToken, saveToken} from '../services/token';
 import {store} from './index';
+import Favorite from '../types/favorite';
+import { FilmStatus } from '../types/film-status';
 
 export const clearErrorAction = createAsyncThunk(
   'game/clearError',
@@ -132,3 +134,40 @@ export const fetchSimilarByID = createAsyncThunk<void, string, {
     dispatch(loadSimilar(data));
   },
 );
+
+export const changeStatusToView = createAsyncThunk<void, FilmStatus, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/changeStatusToView',
+  async ({filmId: id, status: isFavorite}, { dispatch, extra: api}) => {
+    const {data} = await api.post<Films>(`${APIRoute.Favorite}/${id}/${isFavorite}`);
+    dispatch(changeFilmStatus(data));
+  },
+);
+
+export const fetchFavoriteFilmsAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/loadFavoriteFilms',
+  async (_arg, { dispatch, extra: api}) => {
+    const {data} = await api.get<Favorite>(APIRoute.Favorite);
+    dispatch(loadFavoriteFilms(data));
+  },
+);
+
+export const changePromoStatusToView = createAsyncThunk<void, FilmStatus, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/changePromoStatusToView',
+  async ({filmId: id, status: isFavorite}, { dispatch, extra: api}) => {
+    const {data} = await api.post<Films>(`${APIRoute.Favorite}/${id}/${isFavorite}`);
+    dispatch(changePromoStatus(data));
+  },
+);
+

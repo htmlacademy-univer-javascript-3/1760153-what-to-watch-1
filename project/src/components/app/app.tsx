@@ -9,18 +9,13 @@ import AddReview from '../../pages/add-review/add-review';
 import MyList from '../../pages/my-list/my-list';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import { Films } from '../../types/film';
 import {useAppSelector} from '../../hooks';
 import {isCheckedAuth} from '../../utils/check-auth';
 import LoadingPage from '../../pages/loading-page/loading-page';
 import {browserHistory} from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
 
-type AppScreenProps = {
-  films: Films[]
-};
-
-function App({ films }: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isDataLoaded = useAppSelector((state) => state.isDataLoaded);
 
@@ -37,13 +32,13 @@ function App({ films }: AppScreenProps): JSX.Element {
         <Route path={AppRoute.Film} element={<Film/>} />
         <Route path={AppRoute.MyList} element={
           <PrivateRoute authorizationStatus={authorizationStatus}>
-            <MyList films={films.filter((film) => film.isFavorite)} />
+            <MyList />
           </PrivateRoute>
         }
         />
         <Route path={AppRoute.AddReview} element={
           <PrivateRoute authorizationStatus={authorizationStatus}>
-            <AddReview films={films} />
+            <AddReview />
           </PrivateRoute>
         }
         />

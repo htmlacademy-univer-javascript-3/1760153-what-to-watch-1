@@ -1,15 +1,17 @@
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import { Films } from '../../types/film';
 import UserBlock from '../../components/user-block/user-block';
-import FilmCard from '../../components/film-card/film-card';
+import {useAppSelector} from '../../hooks';
+import LoadingPage from '../loading-page/loading-page';
+import FavoriteFilmCard from '../../components/fav-film-card/fav-film-card';
 
-type MyListProps = {
-  films: Films[]
-};
+function MyList(): JSX.Element {
+  const films = useAppSelector((state) => state.favoriteFilms);
+  const loadStatus = useAppSelector((state) => state.isDataLoaded);
 
-function MyList(props: MyListProps): JSX.Element {
-  const { films } = props;
+  if (loadStatus) {
+    return(<LoadingPage />);
+  }
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -22,11 +24,11 @@ function MyList(props: MyListProps): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          {films.map((film) => {
+          {films?.map((film) => {
             const keyValue = `${film.posterImage}`;
             return (
-              <FilmCard
-                film={film}
+              <FavoriteFilmCard
+                id={film.id} name={film.name} previewVideoLink={film.previewVideoLink} posterImage={film.posterImage}
                 key={keyValue}
               />);
           })}

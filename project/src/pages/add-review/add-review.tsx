@@ -1,17 +1,31 @@
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
-import {Films} from '../../types/film';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import { useParams, Link } from 'react-router-dom';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
+import {setDataLoadedStatus} from '../../store/action';
+import LoadingPage from '../loading-page/loading-page';
+import {useEffect} from 'react';
+import {fetchFilmByID} from '../../store/api-actions';
 
-type AddReviewProps = {
-  films: Films[]
-};
 
-function AddReview(props: AddReviewProps): JSX.Element {
-  const {films} = props;
+function AddReview(): JSX.Element {
   const id = Number(useParams().id);
-  const film = films.find((x) => x.id === id);
+
+  const film = useAppSelector((state) => state.film);
+  const loadStatus = useAppSelector((state) => state.isDataLoaded);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setDataLoadedStatus(true));
+    dispatch(fetchFilmByID(id.toString()));
+    dispatch(setDataLoadedStatus(false));
+  }, [id, dispatch]);
+
+  if (loadStatus) {
+    return(<LoadingPage />);
+  }
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
