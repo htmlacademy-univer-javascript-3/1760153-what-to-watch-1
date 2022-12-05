@@ -1,14 +1,15 @@
-import { Films } from '../../types/film';
+import { Comments } from '../../types/film';
+import { convertDate } from '../../utils/film-description';
 
 type ReviewsProps = {
-  film: Films | null;
+  comments: Comments
 }
 
-function ReviewList({ film }: ReviewsProps): JSX.Element {
+function ReviewList({ comments }: ReviewsProps): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {film?.reviews?.map((review) => (
+        {comments?.map((review) => (
           <div className="review" key={`review-${review.id}`}>
             <blockquote className="review__quote">
               <p className="review__text">{review.comment}</p>
@@ -19,7 +20,7 @@ function ReviewList({ film }: ReviewsProps): JSX.Element {
                   className="review__date"
                   dateTime={review.date}
                 >
-                  {review.date}
+                  {convertDate(review.date)}
                 </time>
               </footer>
             </blockquote>

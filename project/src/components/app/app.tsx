@@ -1,10 +1,10 @@
-import Main from '../../pages/main/Main';
+import Main from '../../pages/main/main';
 
 import { Routes, Route } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import SignIn from '../../pages/sign-in/sign-in';
-import Film from '../../pages/film/Film';
-import Player from '../../pages/player/Player';
+import Film from '../../pages/film/film';
+import Player from '../../pages/player/player';
 import AddReview from '../../pages/add-review/add-review';
 import MyList from '../../pages/my-list/my-list';
 import NotFound from '../../pages/not-found/not-found';
