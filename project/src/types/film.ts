@@ -11,13 +11,14 @@ export type Comments = {
 export type Films = {
   id: number,
   name: string,
-  year: number,
+  released: number,
   genre: string,
   posterImage: string,
   backgroundImage: string,
+  backgroundColor: string
   videoLink: string,
   previewVideoLink: string,
-  averageRating: number,
+  rating: number,
   ratingLevel: string,
   description: string,
   director: string,

@@ -59,7 +59,7 @@ function Main(): JSX.Element {
               <h2 className="film-card__title">{promo.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{promo.genre}</span>
-                <span className="film-card__year">{promo.year}</span>
+                <span className="film-card__year">{promo.released}</span>
               </p>
 
               <div className="film-card__buttons">
