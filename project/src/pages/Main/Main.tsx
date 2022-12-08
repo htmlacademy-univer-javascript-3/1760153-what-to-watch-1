@@ -95,9 +95,7 @@ function Main(): JSX.Element {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
           <Genres />
-
           <FilmList />
         </section>
 

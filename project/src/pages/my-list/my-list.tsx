@@ -22,7 +22,6 @@ function MyList(): JSX.Element {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
         <div className="catalog__films-list">
           {films?.map((film) => {
             const keyValue = `${film.posterImage}`;
@@ -34,7 +33,6 @@ function MyList(): JSX.Element {
           })}
         </div>
       </section>
-
       <Footer />
     </div>
   );

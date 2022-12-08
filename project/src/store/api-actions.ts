@@ -4,7 +4,23 @@ import {AxiosInstance} from 'axios';
 import {Films, Comments, UserComment} from '../types/film';
 import Similar from '../types/similar';
 import {APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
-import {loadFilms, loadFavoriteFilms, changeFilmStatus, changePromoStatus, requireAuthorization, setError, setAvatar, redirectToRoute, loadFilm, loadSimilar, loadComments, loadPromo, setFilmFoundStatus, setFilmLoadedStatus, setDataLoadedStatus} from './action';
+import {
+  loadFilms,
+  loadFavoriteFilms,
+  changeFilmStatus,
+  changePromoStatus,
+  requireAuthorization,
+  setError,
+  setAvatar,
+  redirectToRoute,
+  loadFilm,
+  loadSimilar,
+  loadComments,
+  loadPromo,
+  setFilmFoundStatus,
+  setFilmLoadedStatus,
+  setDataLoadedStatus
+} from './action';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {dropToken, saveToken} from '../services/token';

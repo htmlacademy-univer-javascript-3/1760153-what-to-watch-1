@@ -21,7 +21,6 @@ function FilmDescription(): JSX.Element {
   return (
     <div className="film-card__desc">
       <Tabs currentTab={pageTab} />
-
       {pageTab === FilmTabs.Overview && <Overview film={film} />}
       {pageTab === FilmTabs.Details && <Details film={film} />}
       {pageTab === FilmTabs.Reviews && <ReviewList comments={comments}/>}

@@ -14,7 +14,6 @@ function LoadingPage(): JSX.Element {
       <div className="wave"></div>
       <div className="wave"></div>
     </div>
-
   );
 }
 

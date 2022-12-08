@@ -23,11 +23,9 @@ export const createAPI = (): AxiosInstance => {
   api.interceptors.request.use(
     (config: AxiosRequestConfig) => {
       const token = getToken();
-
       if (token) {
         config.headers['x-token'] = token;
       }
-
       return config;
     },
   );
@@ -38,10 +36,8 @@ export const createAPI = (): AxiosInstance => {
       if (error.response && shouldDisplayError(error.response)) {
         processErrorHandle(error.response.data.error);
       }
-
       throw error;
     }
   );
-
   return api;
 };
