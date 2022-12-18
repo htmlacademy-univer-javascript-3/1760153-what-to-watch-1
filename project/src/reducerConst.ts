@@ -7,7 +7,6 @@ export enum NameSpace {
   FilmScreen = 'FILM'
 }
 
-
 export type MainData = {
   films: Films[],
   promo: Films | null,
@@ -16,7 +15,6 @@ export type MainData = {
   filteredFilms: Films[],
   cardCount: number,
 }
-
 
 export type FilmData = {
   film: Films | null,

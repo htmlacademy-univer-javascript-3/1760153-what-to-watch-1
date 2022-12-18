@@ -12,10 +12,7 @@ function FilmList(): JSX.Element {
         {films.slice(0, cardCount).map((film) => {
           const keyValue = `${film.posterImage}`;
           return (
-            <FilmCard
-              film={film}
-              key={keyValue}
-            />);
+            <FilmCard film={film} key={keyValue} />);
         })}
       </div>
       <ShowMoreBtn isAllCardsLoaded={cardCount !== films.length} />

@@ -25,3 +25,13 @@ export function getRuntime(timeMinutes: number): string {
 
   return `${difHours} ${difMinutes}`;
 }
+
+export function convertDate(date: string): string {
+  const dateFormat = new Date(date);
+
+  return (
+    `${dateFormat.toLocaleString(
+      'eng',
+      { month: 'long' })} ${dateFormat.getDate()}, ${dateFormat.getFullYear()}`
+  );
+}

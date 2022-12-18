@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import {Films, Comments} from '../types/film';
-import {AppRoute, AuthorizationStatus} from '../const';
+import {AuthorizationStatus} from '../const';
 import Similar from '../types/similar';
 import Favorite from '../types/favorite';
 
@@ -20,7 +20,7 @@ export const loadComments = createAction<Comments>('data/loadCommentsById');
 export const loadSimilar = createAction<Similar>('data/loadSimilarById');
 export const setAvatar = createAction<string | null>('user/avatar');
 export const setFavoriteCount = createAction<number>('data/setFavoriteCount');
-export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');
+export const redirectToRoute = createAction<string>('app/redirectToRoute');
 export const loadPromo = createAction<Films>('data/loadPromo');
 export const changeFilmTab = createAction<{ currentTab: string }>('film/changeFilmTab');
 export const setFilmFoundStatus = createAction<boolean>('film/setFilmFoundStatus');

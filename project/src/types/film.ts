@@ -25,5 +25,12 @@ export type Films = {
   starring: string[],
   runTime: string,
   isFavorite: boolean,
-  reviews: Comments
+  reviews: Comments,
+  scoresCount: number
+}
+
+export type UserComment = {
+  filmId: string,
+  rating: number,
+  comment: string
 }

@@ -1,10 +1,26 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state';
 import {AxiosInstance} from 'axios';
-import {Films, Comments} from '../types/film';
+import {Films, Comments, UserComment} from '../types/film';
 import Similar from '../types/similar';
 import {APIRoute, AppRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
-import {loadFilms, loadFavoriteFilms, changeFilmStatus, changePromoStatus, requireAuthorization, setError, setAvatar, redirectToRoute, loadFilm, loadSimilar, loadComments, loadPromo, setFilmFoundStatus, setFilmLoadedStatus} from './action';
+import {
+  loadFilms,
+  loadFavoriteFilms,
+  changeFilmStatus,
+  changePromoStatus,
+  requireAuthorization,
+  setError,
+  setAvatar,
+  redirectToRoute,
+  loadFilm,
+  loadSimilar,
+  loadComments,
+  loadPromo,
+  setFilmFoundStatus,
+  setFilmLoadedStatus,
+  setDataLoadedStatus
+} from './action';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {dropToken, saveToken} from '../services/token';
@@ -168,6 +184,20 @@ export const changePromoStatusToView = createAsyncThunk<void, FilmStatus, {
   async ({filmId: id, status: isFavorite}, { dispatch, extra: api}) => {
     const {data} = await api.post<Films>(`${APIRoute.Favorite}/${id}/${isFavorite}`);
     dispatch(changePromoStatus(data));
+  },
+);
+
+export const postComment = createAsyncThunk<void, UserComment, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/postCommentById',
+  async ({comment, rating, filmId}, {dispatch, extra: api}) => {
+    dispatch(setDataLoadedStatus(true));
+    await api.post<UserComment>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
+    dispatch(redirectToRoute(`${APIRoute.Films}/${filmId}`));
+    dispatch(setDataLoadedStatus(false));
   },
 );
 

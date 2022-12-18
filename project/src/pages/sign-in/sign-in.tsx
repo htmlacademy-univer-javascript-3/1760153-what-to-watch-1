@@ -26,7 +26,6 @@ function SignIn(): JSX.Element {
   const checkPassword = (password: string): boolean => {
     const result = /(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{2,}/.test(password);
     setIsInvalidPassword(!result);
-
     return result;
   };
   const [isInvalidEmail, setIsInvalidEmail] = useState(false);
@@ -40,7 +39,6 @@ function SignIn(): JSX.Element {
         <Logo />
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
-
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
           {
@@ -71,7 +69,6 @@ function SignIn(): JSX.Element {
               type="submit"
               onClick={(evt) => {
                 evt.preventDefault();
-
                 if (emailRef.current !== null
                   && passwordRef.current !== null
                   && checkEmail(emailRef.current?.value)
@@ -88,7 +85,6 @@ function SignIn(): JSX.Element {
           </div>
         </form>
       </div>
-
       <Footer />
     </div>
   );

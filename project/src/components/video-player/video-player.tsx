@@ -30,8 +30,6 @@ export default function VideoPlayer({ poster, src, isMute, isPlay }: VideoPlayer
     }
   }, [isPlay]);
   return (
-
     <video src={src} className="player__video" poster={poster} ref={videoRef}></video>
-
   );
 }

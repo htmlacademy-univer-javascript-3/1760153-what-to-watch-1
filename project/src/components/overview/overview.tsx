@@ -14,7 +14,7 @@ function Overview(props: OverviewProps): JSX.Element {
         <div className="film-rating__score">{film?.rating ?? 0.0}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">{ getFilmRating(film?.rating ?? 0.0)}</span>
-          <span className="film-rating__count">{film?.reviews?.length ?? 0} ratings</span>
+          <span className="film-rating__count">{film?.scoresCount ?? 0} ratings</span>
         </p>
       </div>
 
